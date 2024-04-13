@@ -3,6 +3,7 @@
     Task 2
 """
 
+
 def matrix_shape(matrix):
     """
         func to return the size of a matrix
