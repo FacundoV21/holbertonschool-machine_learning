@@ -20,9 +20,16 @@ def add_matrices2D(mat1, mat2):
         if len(mat1[r]) != len(mat2[r]):
             return None
 
-    sum_matrix = [[0 for r in range(rows1)] for c in range(cols1)]
+    sum_matrix = [[0 for c in range(cols1)] for r in range(rows1)]
     for i in range(rows1):
         for j in range(cols1):
             sum_matrix[i][j] = mat1[i][j] + mat2[i][j]
 
     return sum_matrix
+
+mat1 = [[1, 2], [3, 4]]
+mat2 = [[5, 6], [7, 8]]
+print(add_matrices2D(mat1, mat2))
+print(mat1)
+print(mat2)
+print(add_matrices2D(mat1, [[1, 2, 3], [4, 5, 6]]))
