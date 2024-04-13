@@ -9,15 +9,18 @@ def add_matrices2D(mat1, mat2):
         func to return the sum of 2 matrices
     """
 
-    rows = len(mat1)
-    cols = len(mat1[0])
+    rows1 = len(mat1)
+    cols1 = len(mat1[0])
+    rows2 = len(mat2)
+    cols2 = len(mat2[0])
 
-    if rows != len(mat2) or cols != len(mat2[0]):
+    if rows1 != rows2 or cols1 != cols2:
         return None
 
-    sum_matrix = [[0 for r in range(rows)] for c in range(cols)]
-    for i in range(rows):
-        for j in range(cols):
+
+    sum_matrix = [[0 for r in range(rows1)] for c in range(cols1)]
+    for i in range(rows1):
+        for j in range(cols1):
             sum_matrix[i][j] = mat1[i][j] + mat2[i][j]
 
     return sum_matrix
