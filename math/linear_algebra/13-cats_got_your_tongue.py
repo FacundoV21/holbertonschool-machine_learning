@@ -7,6 +7,6 @@ import numpy as np
 
 def np_cat(mat1, mat2, axis=0):
     """
-        func that concatenates two matrices
+        func that concatenates two matrices in an axis
     """
     return np.concatenate((mat1, mat2), axis=axis)
