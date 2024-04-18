@@ -18,4 +18,6 @@ def frequency():
     plt.xlabel("Grades")
     plt.ylabel("Number of Students")
     plt.title("Project A")
+    plt.ylim(top=30)
+    plt.xticks(np.arange(10, 101, 10))
     plt.show()
