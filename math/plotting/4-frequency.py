@@ -13,11 +13,11 @@ def frequency():
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
 
-    plt.hist(student_grades, bins=np.arange(10, 100, 10), edgecolor='black')
-
-    plt.xlabel("Grades")
-    plt.ylabel("Number of Students")
-    plt.title("Project A")
-    plt.ylim(top=30)
-    plt.xticks(np.arange(10, 101, 10))
+    plt.hist(student_grades, np.arange(0, 101, 10), edgecolor='black')
+    plt.xlabel('Grades')
+    plt.ylabel('Number of Students')
+    plt.title('Project A')
+    plt.xlim(0, 100)
+    plt.xticks(np.arange(0, 101, 10), np.arange(0, 101, 10))
+    plt.ylim(0, 30)
     plt.show()
