@@ -21,7 +21,6 @@ def bars():
     for i in range(len(fruit)):
         plt.bar(x, fruit[i], bottom=np.sum(fruit[:i], axis=0), color=colors[i], label=fruits[i], width=0.5)
 
-    plt.xlabel('Person')
     plt.ylabel('Quantity of Fruit')
     plt.title('Number of Fruit per Person')
     plt.xticks(x, ['Farrah', 'Fred', 'Felicia'])
