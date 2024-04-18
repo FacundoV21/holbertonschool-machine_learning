@@ -15,7 +15,7 @@ def bars():
     plt.figure(figsize=(6.4, 4.8))
 
     colors = ['red', 'yellow', '#ff8000', '#ffe5b4']
-    fruits = ['Apples', 'Bananas', 'Oranges', 'Peaches']
+    fruits = ['apples', 'bananas', 'oranges', 'peaches']
     x = np.arange(3)
 
     for i in range(len(fruit)):
