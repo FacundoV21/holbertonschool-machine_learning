@@ -5,6 +5,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def two():
     """
         plot x ↦ y1 and x ↦ y2 as line graphs
