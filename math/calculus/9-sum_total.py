@@ -6,7 +6,7 @@
 
 def summation_i_squared(n):
     """
-        This function calculates the sum of squares from 0 to 
+        This function calculates the sum of squares from 0 to
         n (inclusive) using recursion.
     """
 

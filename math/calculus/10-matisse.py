@@ -6,7 +6,7 @@
 
 def poly_derivative(poly):
     """
-        This function calculates the derivative of a polynomial 
+        This function calculates the derivative of a polynomial
         represented by a list of coefficients.
     """
     if not isinstance(poly, list):
