@@ -64,6 +64,7 @@ class Leaf(Node):
         """
         return self.depth
 
+
 class Decision_Tree():
     """
         Defines the tree class
