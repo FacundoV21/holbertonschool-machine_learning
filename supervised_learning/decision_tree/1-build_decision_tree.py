@@ -43,32 +43,33 @@ class Node:
             return rdepth
         else:
             return ldepth
-        
+
     def count_nodes_below(self, only_leaves=False):
         """
             Counts the amount of nodes
         """
         n = 1
-        l = 0
+        Leaf = 0
 
         if self.right_child:
             if only_leaves:
-                l = l + self.right_child.count_nodes_below(only_leaves=True)
+                Leaf = Leaf + self.right_child.count_nodes_below(only_leaves=True)
             else: 
                 n = n + self.right_child.count_nodes_below()
 
         if self.left_child:
             if only_leaves:
-                l = l + self.left_child.count_nodes_below(only_leaves=True)
+                Leaf = Leaf + self.left_child.count_nodes_below(only_leaves=True)
             else:
                 n = n + self.left_child.count_nodes_below()
 
         if only_leaves and self.is_leaf:
-            l = l + 1
-        
+            Leaf = Leaf + 1
+
         if only_leaves:
-            return l
+            return Leaf
         return n
+
 
 class Leaf(Node):
     """
@@ -88,7 +89,7 @@ class Leaf(Node):
             returns the deptth
         """
         return self.depth
-    
+
     def count_nodes_below(self, only_leaves=False):
         """
             returns the amount of nodes of a leaf (1)
