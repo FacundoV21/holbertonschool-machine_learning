@@ -9,7 +9,8 @@ class Node:
     """
         Defines the node class
     """
-    def __init__(self, feature=None, threshold=None, left_child=None, right_child=None, is_root=False, depth=0):
+    def __init__(self, feature=None, threshold=None,
+                 left_child=None, right_child=None, is_root=False, depth=0):
         """
             Defines the init function
         """
@@ -22,7 +23,7 @@ class Node:
         self.sub_population = None
         self.depth = depth
 
-    def max_depth_below(self) :
+    def max_depth_below(self):
         """
             function to get the depth of the tree
         """
@@ -33,15 +34,16 @@ class Node:
         while n.right_child:
             rdepth = rdepth + 1
             n = n.right_child
-        
+
         while n.left_child:
             ldepth = ldepth + 1
             n = n.left_child
-        
+
         if rdepth > ldepth:
             return rdepth
         else:
             return ldepth
+
 
 class Leaf(Node):
     """
@@ -56,7 +58,7 @@ class Leaf(Node):
         self.is_leaf = True
         self.depth = depth
 
-    def max_depth_below(self) :
+    def max_depth_below(self):
         """
             returns the deptth
         """
@@ -66,7 +68,8 @@ class Decision_Tree():
     """
         Defines the tree class
     """
-    def __init__(self, max_depth=10, min_pop=1, seed=0, split_criterion="random", root=None):
+    def __init__(self, max_depth=10, min_pop=1,
+                 seed=0, split_criterion="random", root=None):
         """
             Defines the init function
         """
@@ -82,7 +85,7 @@ class Decision_Tree():
         self.split_criterion = split_criterion
         self.predict = None
 
-    def depth(self) :
+    def depth(self):
         """
             returns the depth of the tree
         """
