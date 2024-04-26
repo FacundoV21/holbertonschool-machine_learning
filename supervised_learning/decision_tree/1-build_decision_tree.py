@@ -53,13 +53,13 @@ class Node:
 
         if self.right_child:
             if only_leaves:
-                Leaf = Leaf + self.right_child.count_nodes_below(only_leaves=True)
-            else: 
+                Leaf += self.right_child.count_nodes_below(only_leaves=True)
+            else:
                 n = n + self.right_child.count_nodes_below()
 
         if self.left_child:
             if only_leaves:
-                Leaf = Leaf + self.left_child.count_nodes_below(only_leaves=True)
+                Leaf += self.left_child.count_nodes_below(only_leaves=True)
             else:
                 n = n + self.left_child.count_nodes_below()
 
