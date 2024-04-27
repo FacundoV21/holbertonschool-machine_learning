@@ -69,7 +69,7 @@ class Node:
         if only_leaves:
             return Leaf
         return n
-    
+
     def __str__(self):
         """
             def __str__(self) : method for the Node class
@@ -136,6 +136,7 @@ class Leaf(Node):
             returns the amount of nodes of a leaf (1)
         """
         return 1
+
     def __str__(self):
         """
             __str__(self) : method for the Decision_Tree class:
