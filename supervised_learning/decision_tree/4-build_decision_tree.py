@@ -21,8 +21,6 @@ class Node:
         self.is_leaf = False
         self.is_root = is_root
         self.sub_population = None
-        self.lower = {}
-        self.upper = {}
         self.depth = depth
 
     def max_depth_below(self):
@@ -88,44 +86,22 @@ class Node:
 
     def update_bounds_below(self):
         """
-            Update bounds for each feature in the node and its children.
+            Updates the bounds for each node
         """
-        # Ensure initialization of feature keys in lower and upper bounds
         if self.is_root:
-            self.lower[0] = -np.inf
-            self.upper[0] = np.inf
-        
-        # If the node has a specific feature and threshold
-        if self.feature is not None and self.threshold is not None:
-            # Initialize feature key if missing
-            if self.feature not in self.lower:
-                self.lower[self.feature] = -np.inf
-            if self.feature not in self.upper:
-                self.upper[self.feature] = np.inf
+            self.upper = {0: np.inf}
+            self.lower = {0: -1*np.inf}
 
-            # Update bounds for children nodes
-            if self.left_child:
-                # Ensure bounds are properly initialized
-                self.left_child.lower = self.lower.copy()
-                self.left_child.upper = self.upper.copy()
-                # Adjust the upper bound for the left child based on the threshold
-                self.left_child.upper[self.feature] = min(
-                    self.upper[self.feature], self.threshold
-                )
-
-            if self.right_child:
-                # Ensure bounds are properly initialized
-                self.right_child.lower = self.lower.copy()
-                self.right_child.upper = self.upper.copy()
-                # Adjust the lower bound for the right child based on the threshold
-                self.right_child.lower[self.feature] = max(
-                    self.lower[self.feature], self.threshold
-                )
-
-        # Recursively update bounds for child nodes
         for child in [self.left_child, self.right_child]:
-            if child:
-                child.update_bounds_below()
+            child.upper = self.upper.copy()
+            child.lower = self.lower.copy()
+            if child == self.left_child:
+                child.lower[self.feature] = self.threshold
+            else:
+                child.upper[self.feature] = self.threshold
+
+        for child in [self.left_child, self.right_child]:
+            child.update_bounds_below()
 
     def __str__(self):
         """
