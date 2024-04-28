@@ -177,6 +177,9 @@ class Leaf(Node):
         return [self]
 
     def update_bounds_below(self):
+        """
+            passes bc is leaf
+        """
         pass
 
     def __str__(self):
