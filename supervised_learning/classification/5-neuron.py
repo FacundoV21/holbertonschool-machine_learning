@@ -75,3 +75,17 @@ class Neuron:
         cost = self.cost(Y, A)
 
         return predictions, cost
+
+    def gradient_descent(self, X, Y, A, alpha=0.05):
+        """
+            Calculates one pass of gradient descent on the neuron.
+        """
+
+        m = X.shape[1]
+        dZ = A - Y
+
+        dW = np.matmul(dZ, X.T) / m
+        db = np.sum(dZ) / m
+
+        self.__W -= alpha * dW
+        self.__b -= alpha * db
