@@ -50,7 +50,6 @@ class Neuron:
         self.__A = res
         return res
 
-
     def cost(self, Y, A):
         """
             Calculates the cost of the model using logistic regression.
