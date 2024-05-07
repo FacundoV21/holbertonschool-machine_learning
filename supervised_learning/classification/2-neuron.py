@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    Task 
+    Task 2
 """
 import numpy as np
 
@@ -50,10 +50,7 @@ class Neuron:
             Performs forward propagation on the neuron.
         """
 
-        if X.shape[0] != len(self.W):
-            raise ValueError("Number of features in input data does not match neuron's features")
-
-        z = np.dot(self.W, X) + self.b
-        self.__A = 1 / (1 + np.exp(-z))
-
-        return self.__A
+        mtx = np.matmul(self.__W, X) + self.__b
+        res = (1 / (1 + np.exp(-mtx)))
+        self.__A = res
+        return res

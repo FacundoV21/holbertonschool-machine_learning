@@ -50,13 +50,11 @@ class Neuron:
             Performs forward propagation on the neuron.
         """
 
-        if X.shape[0] != len(self.W):
-            raise ValueError("Number of features in input data does not match neuron's features")
+        mtx = np.matmul(self.__W, X) + self.__b
+        res = (1 / (1 + np.exp(-mtx)))
+        self.__A = res
+        return res
 
-        z = np.dot(self.W, X) + self.b
-        self.__A = 1 / (1 + np.exp(-z))
-
-        return self.__A
 
     def cost(self, Y, A):
         """
