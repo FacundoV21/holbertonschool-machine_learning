@@ -103,7 +103,7 @@ class Neuron:
         if not isinstance(alpha, float):
             raise TypeError("alpha must be a float")
         if alpha <= 0:
-            raise ValueError("alpha must be a positive float")
+            raise ValueError("alpha must be positive")
 
         self.__A = self.forward_prop(X)
         for _ in range(iterations):
