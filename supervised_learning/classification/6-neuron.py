@@ -111,3 +111,10 @@ class Neuron:
 
             dW = np.matmul(dZ, X.T) / X.shape[1]
             db = np.sum(dZ) / X.shape[1]
+
+        self.__W -= alpha * dW
+        self.__b -= alpha * db
+
+        final_predictions, final_cost = self.evaluate(X, Y)
+
+        return final_predictions, final_cost
