@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+"""
+    Neural network class
+"""
+
 import numpy as np
 
 
