@@ -144,65 +144,62 @@ class DeepNeuralNetwork:
             Trains the deep neural network.
         """
 
-        if not isinstance(iterations, int):
-            raise TypeError("iterations must be an integer")
-        if iterations <= 0:
-            raise ValueError("iterations must be a positive integer")
-        if not isinstance(alpha, float):
-            raise TypeError("alpha must be a float")
-        if alpha <= 0:
-            raise ValueError("alpha must be positive")
-        if not isinstance(step, int):
-            raise TypeError("step must be an integer")
-        if step < 1 or step > iterations:
-            raise ValueError("step must be positive and <= iterations")
+        plot_cost = np.array([])
 
-        costs = []
+        if type(iterations) is not int:
+            raise TypeError("iterations must be an integer")
+        elif iterations < 0:
+            raise ValueError("iterations must be a positive integer")
+
+        if type(alpha) is not float:
+            raise TypeError("alpha must be a float")
+        elif alpha < 0:
+            raise ValueError("alpha must be positive")
 
         for i in range(iterations):
-            AL, cache = self.forward_prop(X)
+            Aact, cost = self.evaluate(X, Y)
 
-            self.gradient_descent(Y, cache, alpha)
-
-            cost = self.cost(Y, AL)
-            costs.append(cost)
-
-            if verbose and (i % step == 0 or i == 0 or i == iterations - 1):
+            plot_cost = np.append(plot_cost, cost)
+            if verbose:
                 print(f"Cost after {i} iterations: {cost}")
 
-        Y_pred, final_cost = self.evaluate(X, Y)
+            self.gradient_descent(Y, self.__cache, alpha)
+        Aact, cost = self.evaluate(X, Y)
 
         if graph:
-            plt.plot(range(iterations), costs, label="Training Cost")
-            plt.xlabel("Iteration")
-            plt.ylabel("Cost")
+            if type(step) is not int:
+                raise TypeError("step must be an integer")
+            elif step < 1 or step > iterations:
+                raise ValueError("step must be positive and <= iterations")
+
+            x = np.arange(0, iterations, step)
+            plt.plot(x, plot_cost[x])
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
             plt.title("Training Cost")
-            plt.legend()
             plt.show()
+        return Aact, cost
 
-        return Y_pred, final_cost
+    def save(self, filename):
+        """
+            Saves the instance object to a file in pickle format.
+        """
 
-    def save(self, filename=None):
-        """
-        saves the instance object to a file in pickle format
-        """
-        if filename is None:
-            return None
-        if not filename.lower().endswith(".pkl"):
+        if not filename.endswith(".pkl"):
             filename += ".pkl"
-        file = open(filename, 'wb')
-        pickle.dump(self, file)
-        file.close()
+
+        with open(filename, "wb") as f:
+            pickle.dump(self, f)
 
     @staticmethod
-    def load(filename=""):
+    def load(filename):
         """
-        loads a pickled DeepNeuralNetwork object
+            Loads a pickled DeepNeuralNetwork object.
         """
 
         try:
-            file = open(filename, 'rb')
-            return pickle.load(file)
-
-        except Exception as ex:
+            with open(filename, "rb") as f:
+                return pickle.load(f)
+        except FileNotFoundError:
+            print(f"Error: File '{filename}' not found.")
             return None
