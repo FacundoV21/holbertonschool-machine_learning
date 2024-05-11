@@ -12,6 +12,10 @@ def one_hot_encode(Y, classes):
     """
 
     m = Y.shape[0]
+
+    if not isinstance(Y, np.ndarray) or not isinstance(classes, int):
+        return None
+
     if classes <= 0:
         return None
 
