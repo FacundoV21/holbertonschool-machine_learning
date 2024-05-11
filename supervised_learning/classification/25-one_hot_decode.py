@@ -42,7 +42,8 @@ def one_hot_decode(one_hot):
         return None
 
     try:
-        classes, m = one_hot.shape
+        m = one_hot.shape[1]
+        classes = one_hot.shape[0]
 
         if len(one_hot.shape) != 2 or one_hot.sum(axis=0).mean() != 1:
             return None
