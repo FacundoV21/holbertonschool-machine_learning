@@ -79,6 +79,8 @@ class DeepNeuralNetwork:
         """
 
         m = Y.shape[1]
-        logprobs = np.multiply(np.log(A), Y) + np.multiply(np.log(1.0000001 - A), (1 - Y))
+        logprobs = np.multiply(
+            np.log(A), Y) + np.multiply(
+                np.log(1.0000001 - A), (1 - Y))
         cost = -1 / m * np.sum(logprobs)
         return cost
