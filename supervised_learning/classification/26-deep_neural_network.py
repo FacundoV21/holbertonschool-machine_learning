@@ -182,26 +182,27 @@ class DeepNeuralNetwork:
 
         return Y_pred, final_cost
 
-    def save(self, filename):
+    def save(self, filename=None):
         """
-            Saves the instance object to a file in pickle format.
+        saves the instance object to a file in pickle format
         """
-
-        if not filename.endswith(".pkl"):
+        if filename is None:
+            return None
+        if not filename.lower().endswith(".pkl"):
             filename += ".pkl"
-
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
+        file = open(filename, 'wb')
+        pickle.dump(self, file)
+        file.close()
 
     @staticmethod
-    def load(filename):
+    def load(filename=""):
         """
-            Loads a pickled DeepNeuralNetwork object.
+        loads a pickled DeepNeuralNetwork object
         """
 
         try:
-            with open(filename, "rb") as f:
-                return pickle.load(f)
-        except FileNotFoundError:
-            print(f"Error: File '{filename}' not found.")
+            file = open(filename, 'rb')
+            return pickle.load(file)
+
+        except Exception as ex:
             return None
