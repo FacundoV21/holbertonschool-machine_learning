@@ -200,6 +200,5 @@ class DeepNeuralNetwork:
         try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
-        except FileNotFoundError:
-            print(f"Error: File '{filename}' not found.")
+        except Exception as exception:
             return None
