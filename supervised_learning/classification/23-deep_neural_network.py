@@ -138,45 +138,44 @@ class DeepNeuralNetwork:
 
         return Y_pred, cost
 
-    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
+    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True,
+              graph=True, step=100):
         """
             Trains the deep neural network.
         """
 
-        if not isinstance(iterations, int):
-            raise TypeError("iterations must be an integer")
-        if iterations <= 0:
-            raise ValueError("iterations must be a positive integer")
-        if not isinstance(alpha, float):
-            raise TypeError("alpha must be a float")
-        if alpha <= 0:
-            raise ValueError("alpha must be positive")
-        if not isinstance(step, int):
-            raise TypeError("step must be an integer")
-        if step <= 0 or step > iterations:
-            raise ValueError("step must be positive and <= iterations")
+        plot_cost = np.array([])
 
-        costs = []
+        if type(iterations) is not int:
+            raise TypeError("iterations must be an integer")
+        elif iterations < 0:
+            raise ValueError("iterations must be a positive integer")
+
+        if type(alpha) is not float:
+            raise TypeError("alpha must be a float")
+        elif alpha < 0:
+            raise ValueError("alpha must be positive")
 
         for i in range(iterations):
-            AL, cache = self.forward_prop(X)
+            Aact, cost = self.evaluate(X, Y)
 
-            self.gradient_descent(Y, cache, alpha)
-
-            cost = self.cost(Y, AL)
-            costs.append(cost)
-
-            if verbose and (i % step == 0 or i == 0 or i == iterations - 1):
+            plot_cost = np.append(plot_cost, cost)
+            if verbose:
                 print(f"Cost after {i} iterations: {cost}")
 
-        Y_pred, final_cost = self.evaluate(X, Y)
+            self.gradient_descent(Y, self.__cache, alpha)
+        Aact, cost = self.evaluate(X, Y)
 
         if graph:
-            plt.plot(range(iterations), costs, label="Training Cost")
-            plt.xlabel("Iteration")
-            plt.ylabel("Cost")
-            plt.title("Training Cost")
-            plt.legend()
-            plt.show()
+            if type(step) is not int:
+                raise TypeError("step must be an integer")
+            elif step < 1 or step > iterations:
+                raise ValueError("step must be positive and <= iterations")
 
-        return Y_pred, final_cost
+            x = np.arange(0, iterations, step)
+            plt.plot(x, plot_cost[x])
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
+            plt.title("Training Cost")
+            plt.show()
+        return Aact, cost
