@@ -140,7 +140,7 @@ class DeepNeuralNetwork:
         return Y_pred, cost
 
     def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True,
-               graph=True, step=100):
+            graph=True, step=100):
         """
             Trains the deep neural network.
         """
