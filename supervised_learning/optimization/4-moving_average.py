@@ -19,7 +19,8 @@ def moving_average(data, beta):
 
     for i in range(len(data)):
         a = beta * a + (1 - beta) * data[i]
-        moving_average = a / (1 - beta ** (i + 1))
+        b = 1 - beta ** (i + 1)
+        moving_average = a / b
         moving_averages.append(moving_average)
 
     return moving_averages

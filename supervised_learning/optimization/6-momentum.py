@@ -2,7 +2,6 @@
 """
     task 6
 """
-import numpy as np
 import tensorflow as tf
 
 
