@@ -11,8 +11,9 @@ def normalize(X, m, s):
         the given mean and standard deviation.
     """
 
-    if not isinstance(X, np.ndarray) or not isinstance(m, np.ndarray) or not isinstance(s, np.ndarray):
-        raise TypeError("Input must be NumPy arrays.")
+    if not isinstance(X, np.ndarray) or not isinstance(m, np.ndarray):
+        if not isinstance(s, np.ndarray):
+            raise TypeError("Input must be NumPy arrays.")
 
     if X.shape[1] != m.shape[0] or X.shape[1] != s.shape[0]:
         raise ValueError("Shapes of X, m, and s must be compatible.")
