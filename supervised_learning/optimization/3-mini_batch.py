@@ -23,7 +23,7 @@ def create_mini_batches(X, Y, batch_size):
     X, Y = shuffle_data(X, Y)
     i = 0
     mini_batches = []
-    
+
     while i in range(len(X)):
         tup = (X[i:btchSizcpy], Y[i: btchSizcpy])
         mini_batches.append(tup)

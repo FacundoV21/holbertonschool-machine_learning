@@ -11,7 +11,7 @@ def shuffle_data(X, Y):
     """
 
     if not isinstance(X, np.ndarray) or not isinstance(Y, np.ndarray):
-        if  X.shape[0] != Y.shape[0]:
+        if X.shape[0] != Y.shape[0]:
             raise ValueError("X and Y must be\
                                 NumPy arrays with the same\
                                 number of data points.")
