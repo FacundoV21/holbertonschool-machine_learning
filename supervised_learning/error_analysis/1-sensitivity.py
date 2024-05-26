@@ -7,7 +7,8 @@ import numpy as np
 
 def sensitivity(confusion):
     """
-        Calculates the sensitivity (recall) for each class in a confusion matrix.
+        Calculates the sensitivity (recall) for each class in a
+        confusion matrix.
     """
 
     classes = confusion.shape[0]
@@ -20,6 +21,7 @@ def sensitivity(confusion):
         if true_positives == 0:
             sensitivity[i] = 0
         else:
-            sensitivity[i] = true_positives / (true_positives + false_negatives)
+            sensitivity[i] = true_positives / (
+                true_positives + false_negatives)
 
     return sensitivity
